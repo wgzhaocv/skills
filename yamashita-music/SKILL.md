@@ -1,7 +1,7 @@
 ---
 name: yamashita-music
 description: Play Tatsuro Yamashita songs, create playlists, and browse his discography. Use when users ask to play music, create playlists, find songs, or ask about Tatsuro Yamashita's albums.
-allowed-tools: Bash(open *), Bash(start *), Bash(wslview *), Bash(xdg-open *), Bash(powershell.exe *)
+allowed-tools: Bash(open *), Bash(start *), Bash(wslview *), Bash(xdg-open *), Bash(powershell.exe *), Bash(cmd.exe *), Bash(explorer.exe *), Bash(sensible-browser *), Bash(python3 -m webbrowser *), Bash(python -m webbrowser *)
 user-invocable: true
 ---
 
@@ -20,8 +20,13 @@ If you have access to a shell (CLI environment), detect the platform and open th
 | macOS | `open "URL"` |
 | Windows (PowerShell) | `Start-Process "URL"` |
 | Windows (Command Prompt) | `start "" "URL"` |
-| WSL | `wslview "URL"` or `xdg-open "URL"` |
+| WSL | `wslview "URL"` |
+| WSL (fallback) | `powershell.exe -Command "Start-Process 'URL'"` |
+| WSL (fallback 2) | `cmd.exe /c start "" "URL"` |
+| WSL (fallback 3) | `explorer.exe "URL"` |
 | Linux | `xdg-open "URL"` |
+| Linux (fallback) | `sensible-browser "URL"` |
+| Any (Python) | `python3 -m webbrowser "URL"` |
 
 If you do NOT have shell access (e.g. web UI, chat interface), output the URL as a clickable markdown link instead:
 
